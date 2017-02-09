@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>myConf</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Core CSS -->
+  {% load staticfiles %}
+  <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css'/>
+  <style>
+      body {
+          padding-top: 70px;
+          /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+      }
+  </style>
+</head>
+{% block content %}
+
+<div class="container" style="padding-top: 25px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="text-center">
+                            <p>Login</p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login-form" action="" method="post" role="form" style="display: block;">
+                                {% csrf_token %}
+                                <!--This passes in username and password forms to be validated -->
+                                <div class="form-group">
+                                    {{ form.username.label_tag }}
+                                    {{ form.username }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form.password.label_tag }}
+                                    {{ form.password}}
+                                    {% if form.errors %}
+                                    <small class="form-text text-muted text-danger">Your username and password didn't match. Please try again.</small>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-register" value="Log In">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <a href="/create" class="col-md-12 btn btn-register" role="button" tabindex="4">Register</a>
+                                            <input type="hidden" name="next" value="{{ next }}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+{% if not user.is_authenticated %}
+$("ul.nav.navbar-nav.navbar-right").css("display","none");
+{% endif %}
+</script>
+{% endblock %}
