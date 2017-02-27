@@ -27,6 +27,7 @@ def conference(request):
 def account(request):
     return render(request, "basic/account.html")
 
+#These last two probably don't need to be pages
 #@login_required(login_url='login/')
 def myPapers(request):
     return render(request, "basic/mypapers.html")
