@@ -1,0 +1,40 @@
+{% extends "basic/header.html" %}
+
+{% block content %}
+  <div class="jumbotron" style="padding-left: 20px;">
+    <!-- I want this in the bottom left of jumbotron eventually -->
+    <h2>Conference Name</h2>
+   </div>
+  </div>
+
+  <div class="col-sm-12">
+    <row>
+      <div class="col-sm-3">
+        <h4>Status:</h4>
+      </div>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-default">Return</button>
+      </div>
+    </row>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <div class="col-sm-12">
+    <row>
+      <div class="col-sm-9">
+        <div class="well" style="height: 600px">
+          <p>Scrollable well for reading a paper</p>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="well" style="height: 600px">
+          <!-- Temporary shit-->
+          <p>Scrollable well for comments/reviews</p>
+        </div>
+      </div>
+    </row>
+  </div>
+{% endblock %}

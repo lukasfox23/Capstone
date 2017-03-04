@@ -46,3 +46,6 @@ def myPapers(request):
 #@login_required(login_url='login/')
 def myConferences(request):
     return render(request, "basic/myconferences.html")
+
+def ContentView(request):
+    return render(request, "basic/contentview.html")
