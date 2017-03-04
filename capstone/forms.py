@@ -9,8 +9,7 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(label="Password", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password', 'type':'password'}))
 
-class RegistrationForm(forms.Form):
-    username = forms.CharField(label="Username", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
-    email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'email'}))
-    password = forms.CharField(label="Password", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'email'}))
-    
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','email','password']
