@@ -13,3 +13,4 @@ class RegistrationForm(forms.Form):
     username = forms.CharField(label="Username", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
     email = forms.CharField(label="Email", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'email'}))
     password = forms.CharField(label="Password", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'email'}))
+    
