@@ -26,20 +26,3 @@ def register(request):
 #@login_required(login_url='login/')
 def index(request):
     return render(request, "basic/basic.html")
-
-def gallery(request):
-    return render(request, "basic/gallery.html")
-
-#@login_required(login_url='login/')
-def account(request):
-    return render(request, "basic/account.html")
-
-#These last two probably don't need to be pages
-#@login_required(login_url='login/')
-def myPapers(request):
-    return render(request, "basic/mypapers.html")
-
-#@login_required(login_url='login/')
-
-def ContentView(request):
-    return render(request, "basic/contentview.html")
