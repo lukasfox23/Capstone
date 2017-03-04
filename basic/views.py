@@ -30,10 +30,6 @@ def index(request):
 def gallery(request):
     return render(request, "basic/gallery.html")
 
-# Thinking this url should look something like /basic/conference/"conference name"
-def conference(request):
-    return render(request, "basic/conference.html")
-
 #@login_required(login_url='login/')
 def account(request):
     return render(request, "basic/account.html")
@@ -44,8 +40,6 @@ def myPapers(request):
     return render(request, "basic/mypapers.html")
 
 #@login_required(login_url='login/')
-def myConferences(request):
-    return render(request, "basic/myconferences.html")
 
 def ContentView(request):
     return render(request, "basic/contentview.html")

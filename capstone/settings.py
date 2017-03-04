@@ -30,6 +30,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'basic',
+    'conference',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
