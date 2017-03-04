@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^account/$', views.account, name='account'),
     url(r'^mypapers/$', views.myPapers, name='mypapers'),
     url(r'^myconferences/$', views.myConferences, name='myconferences'),
+    url(r'^contentview/$', views.ContentView, name='contentview'),
 ]

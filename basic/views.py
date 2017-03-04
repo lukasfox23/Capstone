@@ -11,7 +11,7 @@ from capstone.forms import RegistrationForm
 def login(request):
     return render(request, "basic/login.html")
 
-# This function handles 
+# This function handles
 def register(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
@@ -50,3 +50,6 @@ def myPapers(request):
 #@login_required(login_url='login/')
 def myConferences(request):
     return render(request, "basic/myconferences.html")
+
+def ContentView(request):
+    return render(request, "basic/contentview.html")
