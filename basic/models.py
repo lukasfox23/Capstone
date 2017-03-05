@@ -13,6 +13,8 @@ class Conference(models.Model):
     available_count = models.IntegerField()
     header_path = models.CharField(max_length=256)
 
+
+
 class UserConference(models.Model):
     USER_TYPES = (
         ('A','Admin'),

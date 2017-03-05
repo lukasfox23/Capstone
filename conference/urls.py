@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^conference/$', views.conference, name='conference'),
+    url(r'^createconference/$', views.createconference, name='createconference'),
     url(r'^gallery/$', views.gallery, name='gallery'),
     url(r'^conference/$', views.conference, name='conference'),
     url(r'^account/$', views.account, name='account'),
