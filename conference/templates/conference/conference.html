@@ -40,13 +40,24 @@
             <div id="contentSubmission" class="modal fade" role="dialog">
               <div class="modal-dialog">
 
-                <div class="modal-conent">
+                <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
                   </div>
                   <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <form action="" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <p>{{ form.non_field_errors }}</p>
+                      <p>{{ form.file_path.label_tag}} {{ form.file_path.help_text }}</p>
+                      <p>
+                        {{ form.file_path.errors }}
+                        {{ form.file_path }}
+                      </p>
+                      <p>
+                        <input type="submit" value="Upload">
+                      </p>
+                    </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -3,11 +3,21 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from basic.models import Conference,UserConference,Item,Comment
 from django.contrib.auth.decorators import login_required
-from capstone.forms import ConferenceForm
+from capstone.forms import ConferenceForm,FileForm
 # Create your views here.
 # Thinking this url should look something like /basic/conference/"conference name"
 def conference(request):
-    return render(request, "conference/conference.html")
+    if request.method == 'POST':
+        form = FileForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Hardcoded to add to conference 1 rn, need to change
+            newFile = Item(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = 1),file_path = request.FILES['file_path'])
+            newFile.save()
+
+            return render(request, "conference/conference.html")
+    else:
+        form = FileForm()
+    return render(request, "conference/conference.html", {'form':form})
 
 def createconference(request):
     if request.method == "POST":
