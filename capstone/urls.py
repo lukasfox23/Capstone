@@ -21,6 +21,7 @@ from capstone.forms import LoginForm
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('basic.urls')),
+    url(r'^', include('conference.urls')),
     url(r'^login/$', views.login, {'template_name': 'basic/login.html', 'authentication_form': LoginForm}, name="login"),
     url(r'^logout/$', views.logout, {'next_page': '/login'}),
 ]
