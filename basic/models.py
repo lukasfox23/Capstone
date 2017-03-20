@@ -11,7 +11,7 @@ class Conference(models.Model):
     conference_state = models.CharField(max_length=20)
     attendee_count = models.IntegerField()
     available_count = models.IntegerField()
-    header_path = models.CharField(max_length=256)
+    header_path = models.FileField(upload_to='headers/')
 
 class UserConference(models.Model):
     USER_TYPES = (
