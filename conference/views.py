@@ -24,13 +24,13 @@ def createconference(request):
         form = ConferenceForm(request.POST)
         if form.is_valid():
             data=form.cleaned_data
-            new_conference=Conference.objects.create(conference_name=data['conference_name'],conference_info=data['conference_info'],conference_address=data['conference_address'],conference_city=data['conference_city'],conference_state=data['conference_state'],attendee_count=1,available_count=data['available_count'],header_path=data['header_path'])
+            new_conference=Conference.objects.create(conference_name=data['conference_name'],conference_info=data['conference_info'],conference_address=data['conference_address'],conference_city=data['conference_city'],conference_state=data['conference_state'],attendee_count=1,available_count=data['available_count'])
             if(new_conference):
                 new_conference.save()
             return render(request, "conference/conference.html", {'data':data})
     else:
         form = ConferenceForm()
-        return render(request, 'conference/createconference.html', {'form':form})
+    return render(request, 'conference/createconference.html', {'form':form})
 
 def gallery(request):
     return render(request, "conference/gallery.html")

@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "basic/header.html" %}
 
-  <title>EventPal</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap Core CSS -->
-  {% load staticfiles %}
-  <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css'/>
-  <style>
-      body {
-          padding-top: 70px;
-          /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-      }
-  </style>
-</head>
 {% block content %}
 
 <div class="container" style="padding-top: 25px">
@@ -34,9 +17,29 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form method="post" action="">
+                            <form class="form-horizontal" method="post" action="">
                               {% csrf_token %}
-                              {{ form }}
+                              {% for field in form %}
+                                  {% if field.errors %}
+                                      <div class="control-group error">
+                                          <label class="control-label">{{ field.label }}</label>
+                                          <div class="controls">{{ field }}
+                                              <span class="help-inline">
+                                                  {% for error in  field.errors %}{{ error }}{% endfor %}
+                                              </span>
+                                          </div>
+                                      </div>
+                                  {% else %}
+                                      <div class="control-group">
+                                          <label class="control-label">{{ field.label }}</label>
+                                          <div class="controls">{{ field }}
+                                              {% if field.help_text %}
+                                                  <p class="help-inline"><small>{{ field.help_text }}</small></p>
+                                              {% endif %}
+                                          </div>
+                                      </div>
+                                  {% endif %}
+                              {% endfor %}
                               <input type="submit" value="Create Conference" />
                             </form>
                         </div>
@@ -48,4 +51,3 @@
 </div>
 
 {% endblock %}
-</html>

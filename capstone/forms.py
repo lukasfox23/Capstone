@@ -25,4 +25,4 @@ class FileForm(forms.Form):
 class ConferenceForm(ModelForm):
     class Meta:
         model = Conference
-        fields = ['conference_name','conference_info','conference_address','conference_city','conference_state','available_count','header_path']
+        fields = ['conference_name','conference_info','conference_address','conference_city','conference_state','available_count']
