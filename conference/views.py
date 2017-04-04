@@ -6,18 +6,21 @@ from django.contrib.auth.decorators import login_required
 from capstone.forms import ConferenceForm,FileForm
 # Create your views here.
 # Thinking this url should look something like /basic/conference/"conference name"
-def conference(request):
+def conference(request, conference_id):
+    confId = conference_id
+    desiredConf = Conference.objects.filter(conference_id = confId)
+    # Use desiredConf[0] to access what should be the only conference in this variable
+    # Method for uploading papers, should move to model for cleanliness
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
-            # Hardcoded to add to conference 1 rn, need to change
-            newFile = Item(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = 1),file_path = request.FILES['file_path'])
+            newFile = Item(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id),file_path = request.FILES['file_path'])
             newFile.save()
 
-            return render(request, "conference/conference.html")
+            return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
     else:
         form = FileForm()
-    return render(request, "conference/conference.html", {'form':form})
+    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
 
 def createconference(request):
     if request.method == "POST":
@@ -32,8 +35,23 @@ def createconference(request):
         form = ConferenceForm()
     return render(request, 'conference/createconference.html', {'form':form})
 
+# Gets and displays a list of currently available conferences
 def gallery(request):
-    return render(request, "conference/gallery.html")
+    currentUser = request.user
+    # The user enters a name search
+    if request.method == "GET":
+        # Get the search result
+        search = request.GET.get('conferenceNameSearch')
+        # Verify there's something there
+        if search is not None:
+            # Get list of conferences with name like input
+            Conferences = Conference.objects.filter(conference_name__contains = search)
+        else:
+            Conferences = Conference.objects.all()
+        return render(request, "conference/gallery.html", {'Conferences':Conferences})
+    else:
+        Conferences = Conference.objects.all()
+    return render(request, "conference/gallery.html", {'Conferences':Conferences})
 
 #@login_required(login_url='login/')
 def account(request):

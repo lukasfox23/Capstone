@@ -1,10 +1,9 @@
 {% extends "basic/header.html" %}
 
 {% block content %}
-{{ data }}
   <div class="jumbotron" style="padding-left: 20px;">
     <!-- I want this in the bottom left of jumbotron eventually -->
-    <h2>Conference Name</h2>
+    <h2>{{ desiredConf.conference_name }}</h2>
    </div>
  </div>
 
@@ -43,7 +42,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title">Paper Submission Form</h4>
                   </div>
                   <div class="modal-body">
                     <form action="" method="post" enctype="multipart/form-data">
@@ -72,25 +71,15 @@
       <div class="col-sm-3">
         <div class="well" style="height: 600px">
           <!-- Temporary shit-->
-          <h3>Conference Title</h3>
+          <h3>{{ desiredConf.conference_name }}</h3>
           <br>
           <p>Organization Name</p>
           <p>01/01/2017 00:00:00 AM</p>
-          <p>Chicago, IL</p>
+          <p>{{ desiredConf.conference_city }}, {{ desiredConf.conference_state }}</p>
           <br>
           <h4>Description</h4>
-          <p>Words words words words words words words words words
-              words words words words words words words words words words
-             words words words words words words words words
-            words words words words words words words wordsv
-           words words words words words words words words
-          words words words words words words words words words words
-         words words words words words words words words words words
-            words words words words words words words words words words
-             words words words words words words words words
-            words words words words words words words words words words
-           words words words words words words</p>
-          <p>Spots left: 0</p>
+          <p>{{ desiredConf.conference_info }}</p>
+          <p>Spots left: {{ desiredConf.available_count }}</p>
           <button type="button" class="btn pull-right btn-success">Attend!</button>
         </div>
       </div>
