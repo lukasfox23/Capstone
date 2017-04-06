@@ -15,7 +15,14 @@ class UserForm(ModelForm):
         model = User
         fields = ['username','email','password']
 
+# For uploading papers/covers etc
+class FileForm(forms.Form):
+    file_path = forms.FileField(
+        label = 'Select a file',
+        help_text = 'Only pdfs accepted'
+    )
+
 class ConferenceForm(ModelForm):
     class Meta:
         model = Conference
-        fields = ['conference_name','conference_info','conference_address','conference_city','conference_state','available_count','header_path']
+        fields = ['conference_name','conference_info','conference_address','conference_city','conference_state','available_count']

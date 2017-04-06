@@ -13,8 +13,6 @@
   <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css'/>
   <link rel="stylesheet" href="{% static 'css/sidebar-nav.css' %}" type="text/css"/>
   <!-- jQuery Version 1.11.1 -->
-  <script src="{% static 'js/jquery.js' %}"></script>
-  <script src="{% static 'js/jquery.min.js' %}"></script>
   <style>
     body {
       padding-left: 250px;
@@ -34,16 +32,16 @@
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="#">Notifications</a>
+            <a href="/gallery/">Gallery</a>
           </li>
           <li>
-            <a href="#">My Conferences</a>
+            <a href="/account">Account</a>
           </li>
           <li>
-            <a href="#">My Papers</a>
+            <a href="/mypapers">My Papers</a>
           </li>
           <li>
-            <a href="#">My Account</a>
+            <a href="/myconferences">My Conferences</a>
           </li>
           <li>
             <a href="/logout">Logout</a>
@@ -54,7 +52,7 @@
     {% block content %}
     {% endblock %}
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'js'}"
+    <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!--<script src="{% static 'js/bootstrap.js' %}"></script>-->
 

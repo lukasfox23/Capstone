@@ -11,9 +11,7 @@ class Conference(models.Model):
     conference_state = models.CharField(max_length=20)
     attendee_count = models.IntegerField()
     available_count = models.IntegerField()
-    header_path = models.CharField(max_length=256)
-
-
+    header_path = models.FileField(upload_to='headers/')
 
 class UserConference(models.Model):
     USER_TYPES = (
@@ -30,7 +28,7 @@ class Item(models.Model):
     item_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User)
     conference_id = models.ForeignKey(Conference)
-    file_path = models.CharField(max_length=256)
+    file_path = models.FileField(upload_to='uploads/')
     approval_flag = models.BooleanField(default=False)
 
 class Comment(models.Model):
