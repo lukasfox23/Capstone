@@ -15,7 +15,10 @@ def register(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            new_user = User.objects.create_user(**form.cleaned_data)
+            data = form.cleaned_data
+            # new_user = User.objects.create_user(**form.cleaned_data)
+            new_user = User.objects.create_user(username=data['username'], password=data['password'], email=data['email'])
+            new_user = authenticate(username=data['username'], password=data['password'])
             if new_user:
                 auth_login(request, new_user)
             return render(request, "basic/basic.html")
