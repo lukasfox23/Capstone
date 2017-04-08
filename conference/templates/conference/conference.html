@@ -1,12 +1,12 @@
 {% extends "basic/header.html" %}
 
 {% block content %}
-  <div class="jumbotron" style="padding-left: 20px;">
+  <div class="jumbotron" style="padding-top: 20px;">
     <!-- I want this in the bottom left of jumbotron eventually -->
     <h2>{{ desiredConf.conference_name }}</h2>
    </div>
  </div>
-
+<div class="container">
   <div class="col-sm-12">
   <form class="form-inline">
     <div class="form-group">
@@ -85,4 +85,5 @@
       </div>
     </row>
   </div>
+</div>
 {% endblock %}
