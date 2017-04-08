@@ -30,7 +30,9 @@ def createconference(request):
             new_conference=Conference.objects.create(conference_name=data['conference_name'],conference_info=data['conference_info'],conference_address=data['conference_address'],conference_city=data['conference_city'],conference_state=data['conference_state'],attendee_count=1,available_count=data['available_count'])
             if(new_conference):
                 new_conference.save()
-            return render(request, "conference/conference.html", {'data':data})
+            # Not navigating to the proper url
+            #return render(request, "conference/conference.html", {'newConference':new_conference.conference_id,'data':data})
+            return conference(request, new_conference.conference_id)
     else:
         form = ConferenceForm()
     return render(request, 'conference/createconference.html', {'form':form})
