@@ -60,7 +60,7 @@ def gallery(request):
         Conferences = Conference.objects.all()
     return render(request, "conference/gallery.html", {'Conferences':Conferences})
 
-#@login_required(login_url='login/')
+@login_required(login_url='login/')
 def account(request):
     return render(request, "conference/account.html")
 
