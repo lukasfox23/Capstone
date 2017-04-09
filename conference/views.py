@@ -18,6 +18,11 @@ def conference(request, conference_id):
             newFile.save()
 
             return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
+        print request.POST
+        if request.POST.get("attendSubmit"):
+            newConferenceAttendee = UserConference(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id), user_type = "G")
+            newConferenceAttendee.save()
+            return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
     else:
         form = FileForm()
     return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})

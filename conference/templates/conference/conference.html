@@ -80,7 +80,30 @@
           <h4>Description</h4>
           <p>{{ desiredConf.conference_info }}</p>
           <p>Spots left: {{ desiredConf.available_count }}</p>
-          <button type="button" class="btn pull-right btn-success">Attend!</button>
+          <button type="button" class="btn pull-right btn-success" data-toggle="modal" data-target="#attendModal">Attend!</button>
+        </div>
+
+        <div class="modal fade" id="attendModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Attend Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                <p><strong>Are you sure you want to attend this conference?</strong></p>
+              </div>
+              <div class="modal-footer">
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <p>
+                    <input type="submit" name="attendSubmit" class="btn btn-success btn-defualt" value="Yes">
+                  </p>
+                </form>
+                <button type="submit" class="btn btn-danger btn-default" data-dismiss="modal">No</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </row>
