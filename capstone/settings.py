@@ -84,9 +84,14 @@ WSGI_APPLICATION = 'capstone.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'd8ehmejmka3baj',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'znmuuashbljkkm',
+        'PASSWORD': '16920d6a6253120e1faf9bd66fad61c08e936828baaf65e0ea44710123d56bbe',
+        'HOST': 'ec2-184-72-249-88.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+        'PORT': '5432',                      # Set to empty string for default.
+        }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
