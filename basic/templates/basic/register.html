@@ -34,11 +34,15 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form method="post" action="">
-                              {% csrf_token %}
-                              {{ form }}
-                              <input type="submit" value="Register" />
-                            </form>
+                          <form class="form-horizontal" method="post" action="">
+                            {% csrf_token %}
+                            {% include 'basic/form-template.html' %}
+                            <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Create Account</button>
+                              </div>
+                            </div>
+                          </form>
                         </div>
                     </div>
                 </div>

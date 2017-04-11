@@ -30,7 +30,7 @@ def createconference(request):
             return render(request, "conference/conference.html", {'data':data})
     else:
         form = ConferenceForm()
-    return render(request, 'conference/createconference.html', {'form':form})
+        return render(request, 'conference/createconference.html', {'form':form})
 
 def gallery(request):
     return render(request, "conference/gallery.html")
