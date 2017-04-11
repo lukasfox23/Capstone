@@ -1,55 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <title>EventPal</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap Core CSS -->
-  {% load staticfiles %}
-  <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css'/>
-  <style>
-      body {
-          padding-top: 70px;
-          /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-      }
-  </style>
-</head>
+{% extends "basic/header.html" %}
 {% block content %}
 
-<div class="container" style="padding-top: 25px">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-login">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class"text-center">
-                            <p>Create Account</p>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                          <form class="form-horizontal" method="post" action="">
-                            {% csrf_token %}
-                            {% include 'basic/form-template.html' %}
-                            <div class="form-group">
-                              <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Create Account</button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+<div class="container">
+  <div class="jumbotron">
+    <h3>Create an Account</h3>
+    <form id="register-form" method="post" action="" style="display: block;">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </div>
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+      </div>
+      <div class="form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        {% if form.errors %}
+          {% for errors in form.errors %}
+            <small class="form-text text-muted text-danger">{{ errors }}</small>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register">
+      </div>
+    </form>
+  </div>
 </div>
 
 {% endblock %}
-</html>
