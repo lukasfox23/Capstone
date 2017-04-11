@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from basic.models import Conference,UserConference,Item,Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
@@ -28,4 +29,6 @@ def register(request):
 
 #@login_required(login_url='login/')
 def index(request):
-    return render(request, "basic/basic.html")
+    # Get conferences to populate main page slider. TODO Add date field & only display upcoming conferences
+    Conferences = Conference.objects.all()
+    return render(request, "basic/basic.html",{'Conferences': Conferences})
