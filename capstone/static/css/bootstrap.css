@@ -6941,4 +6941,7 @@ ul.bxslider {
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 15px;
+    width:100%;
+    position: fixed;
+    bottom:0px;
 }

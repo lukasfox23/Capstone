@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -58,31 +57,25 @@
             </div>
         </div>
     </nav>
-    {% block content %} {% endblock %}
-
-    <footer class="footer-inverse">
-        <div class="container-fluid">
-
-            <p>
-                <div style="color:#9d9d9d" class="glyphicon glyphicon-map-marker">Louisville,US</div>
-            </p>
-            <p>
-                <div style="color:#9d9d9d" class="glyphicon glyphicon-phone">(502)000-0000</div>
-            </p>
-            <p>
-                <div style="color:#9d9d9d" class="glyhpicon glyphicon-envelope">email@us.com</div>
-            </p>
-
-        </div>
-        </div>
-    </footer>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
-
-
+    {% block content %}
+    {% endblock %}
 </body>
-
+<footer class="footer-inverse">
+    <div class="container-fluid">
+        <p>
+            <div style="color:#9d9d9d" class="glyphicon glyphicon-map-marker">Louisville,US</div>
+        </p>
+        <p>
+            <div style="color:#9d9d9d" class="glyphicon glyphicon-phone">(502)000-0000</div>
+        </p>
+        <p>
+            <div style="color:#9d9d9d" class="glyhpicon glyphicon-envelope">email@us.com</div>
+        </p>
+    </div>
+</footer>
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
 </html>
