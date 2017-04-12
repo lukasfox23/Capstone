@@ -3,67 +3,79 @@
 
 <head>
 
-  <title>EventPal</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EventPal</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap Core CSS -->
-  {% load staticfiles %}
-  <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css'/>
-  <!-- jQuery Version 1.11.1 -->
-  <style>
-    body {
-      padding-top: 70px;
-    }
-  </style>
+    <!-- Bootstrap Core CSS -->
+    {% load staticfiles %}
+    <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css' />
+    <!-- BxSlider CSS -->
+    <link rel='stylesheet' href="{% static 'css/jquery.bxslider.css' %}" type='tex/css' />
+    <!-- jQuery Version 1.11.1 -->
+    <style>
+        body {
+            padding-top: 70px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target='#bs-example-navbar-collapse-1'>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target='#bs-example-navbar-collapse-1'>
           <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="/" color='white'>EventPal</a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav pull-right">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/gallery/">Gallery</a>
-          </li>
-          <li>
-            <a href="/account">Account</a>
-          </li>
-          <li>
-            <a href="/createconference">Create a Conference</a>
-          </li>
-          <li>
-            <a href="/register">Register</a>
-          </li>
-          <li>
-            <a href="/login">Login</a>
-          </li>
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-    {% block content %}
-    {% endblock %}
+                <a class="navbar-brand" href="/" color='white'>EventPal</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/gallery/">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="/account">Account</a>
+                    </li>
+                    <li>
+                        <a href="/createconference">Create a Conference</a>
+                    </li>
+                    <li>
+                        <a href="/register">Register</a>
+                    </li>
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %} {% endblock %}
 
-<footer class="footer">
-  <div class="container">
-    <span class="text-muted">This is a footer</span>
-  </div>
-</footer>
+    <footer class="footer-inverse">
+        <div class="container-fluid">
+
+            <p>
+                <div style="color:#9d9d9d" class="glyphicon glyphicon-map-marker">Louisville,US</div>
+            </p>
+            <p>
+                <div style="color:#9d9d9d" class="glyphicon glyphicon-phone">(502)000-0000</div>
+            </p>
+            <p>
+                <div style="color:#9d9d9d" class="glyhpicon glyphicon-envelope">email@us.com</div>
+            </p>
+
+        </div>
+        </div>
+    </footer>
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
