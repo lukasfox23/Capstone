@@ -19,7 +19,13 @@
               <h4>My Conferences</h4>
             </div>
             <div class="panel-body">
-              <p>poop</p>
+              {% if Conferences == '' %}
+                <p>It appears you have no conferences. Go join one!</p>
+              {% else %}
+                {% for Conference in Conferences %}
+                <p>{{Conference.conference_name}}</p>
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
           <div class="panel panel-default">
