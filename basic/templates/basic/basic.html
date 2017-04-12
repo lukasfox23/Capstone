@@ -73,8 +73,7 @@
                 <p><strong><a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a></strong></p>
                 <p>{{ conference.conference_info }}</p>
                 <p>NEEDS DATE FIELD</p>
-                <button class="btn" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
-                <button class="btn" data-toggle="modal" data-target="#attendModal">Attend</button>
+                <button class="btn btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
             </div>
             {% endfor %}
     </div>
