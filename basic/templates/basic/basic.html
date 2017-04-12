@@ -1,36 +1,11 @@
-{% extends "basic/header.html" %} {% block content %}
+{% extends "basic/header.html" %}
+{% block content %}
 <div id="homeCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#homeCarousel" data-slide-to="1"></li>
         <li data-target="#homeCarousel" data-slide-to="2"></li>
     </ol>
-
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="" alt="Stuff">
-            <div class="carousel-caption">
-                <h3>Academic Conferences</h3>
-                <p>Gather the greatest minds in science and theory.</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="" alt="Stuff">
-            <div class="carousel-caption">
-                <h3>Conventions</h3>
-                <p>Show off people who like showing things off!</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="" alt="Stuff">
-            <div class="carousel-caption">
-                <h3>Any Conferences</h3>
-                <p>Create any large get-together you can imagine!</p>
-            </div>
-        </div>
-    </div>
 
     <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -68,7 +43,8 @@
 
         <!-- Needs a for loop added to display three upcoming conferences -->
         <ul class="mainSlider">
-            {% csrf_token %} {% for conference in Conferences %}
+            {% csrf_token %}
+            {% for conference in Conferences %}
             <div class="well">
                 <p><strong><a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a></strong></p>
                 <p>{{ conference.conference_info }}</p>

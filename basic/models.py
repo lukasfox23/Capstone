@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 class Conference(models.Model):
@@ -9,6 +10,8 @@ class Conference(models.Model):
     conference_address = models.CharField(max_length=50)
     conference_city = models.CharField(max_length=20)
     conference_state = models.CharField(max_length=20)
+    conference_start = models.DateTimeField(default=datetime.now)
+    conference_end = models.DateTimeField(default=datetime.now)
     attendee_count = models.IntegerField()
     available_count = models.IntegerField()
     header_path = models.FileField(upload_to='headers/')

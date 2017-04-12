@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from basic.models import Conference,UserConference,Item,Comment
 from django import forms
+from datetime import datetime
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30,
@@ -22,7 +23,12 @@ class FileForm(forms.Form):
         help_text = 'Only pdfs accepted'
     )
 
-class ConferenceForm(ModelForm):
-    class Meta:
-        model = Conference
-        fields = ['conference_name','conference_info','conference_address','conference_city','conference_state','available_count']
+class ConferenceForm(forms.Form):
+    name = forms.CharField(max_length=75)
+    info = forms.CharField(widget=forms.Textarea)
+    address = forms.CharField(max_length=50)
+    city = forms.CharField(max_length=20)
+    state = forms.CharField(max_length=20)
+    start = forms.DateTimeField()
+    end = forms.DateTimeField()
+    available = forms.IntegerField()
