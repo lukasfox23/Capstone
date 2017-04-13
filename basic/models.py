@@ -24,6 +24,14 @@ class UserConference(models.Model):
     conference_id = models.ForeignKey(Conference)
     user_type = models.CharField(max_length=1, choices=USER_TYPES)
 
+    @classmethod
+    def checkUnique(conference, uid, cid):
+        try:
+            conference.objects.get(user_id = uid, conference_id = cid)
+            return False
+        except:
+            return True
+
 class Item(models.Model):
     item_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User)
