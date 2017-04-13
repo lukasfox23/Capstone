@@ -10,6 +10,8 @@
 
     <!-- Bootstrap Core CSS -->
     {% load staticfiles %}
+    <!-- Redo this, complete garbage -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/png" />
     <link rel='stylesheet' href="{% static 'css/bootstrap.css' %}" type='text/css' />
     <!-- BxSlider CSS -->
     <link rel='stylesheet' href="{% static 'css/jquery.bxslider.css' %}" type='tex/css' />
@@ -28,7 +30,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target='#bs-example-navbar-collapse-1'>
           <span class="sr-only">Toggle navigation</span>
         </button>
-                <a class="navbar-brand" href="/" color='white'>EventPal</a>
+                <a class="navbar-brand" href="/">EventPal.</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav pull-right">
@@ -62,15 +64,17 @@
 </body>
 <footer class="footer-inverse">
     <div class="container-fluid">
-        <p>
-            <div style="color:#9d9d9d" class="glyphicon glyphicon-map-marker">Louisville,US</div>
-        </p>
-        <p>
-            <div style="color:#9d9d9d" class="glyphicon glyphicon-phone">(502)000-0000</div>
-        </p>
-        <p>
-            <div style="color:#9d9d9d" class="glyhpicon glyphicon-envelope">email@us.com</div>
-        </p>
+        <ul class="list-inline">
+            <li>
+            <div class="glyphicon glyphicon-map-marker"> Louisville,US</div>
+        </li>
+        <li>
+            <div class="glyphicon glyphicon-phone"> (502)000-0000</div>
+        </li>
+        <li>
+            <div class="glyhpicon glyphicon-envelope"> email@us.com</div>
+            <li>
+        </ul>
     </div>
 </footer>
 <!-- Bootstrap Core JavaScript -->

@@ -10,6 +10,10 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
+  background-image: url(/static/images/generic-background.jpg);
+  background-size: 1920px 1080px;
+  background-repeat:no-repeat;
+  display: compact;
   margin: 0;
 }
 article,
@@ -4275,8 +4279,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   float: left;
   height: 50px;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 20px;
+  font-family: 'BEBAS';
+  color: 'white';
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -4589,15 +4595,17 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
+  font-family: 'Sullivan';
+  background-color: #22252C;
+  border-color: #3F3250;
+  color: #FFF;
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: #E14658;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
@@ -4608,7 +4616,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: #E14658;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
@@ -6818,7 +6826,7 @@ ul.bxslider {
   padding-top: 20px;
 }
 .bx-wrapper .bx-pager.bx-default-pager a {
-  background: #666;
+  background: #C0B3A0;
   text-indent: -9999px;
   display: block;
   width: 10px;
@@ -6832,7 +6840,7 @@ ul.bxslider {
 .bx-wrapper .bx-pager.bx-default-pager a:hover,
 .bx-wrapper .bx-pager.bx-default-pager a.active,
 .bx-wrapper .bx-pager.bx-default-pager a:focus {
-  background: #000;
+  background: #E14658;
 }
 .bx-wrapper .bx-pager-item,
 .bx-wrapper .bx-controls-auto .bx-controls-auto-item {
@@ -6935,13 +6943,27 @@ ul.bxslider {
 
 /* CUSTOM */
 .footer-inverse {
-    background-color: #222;
-    border-color: #080808;
+    background-color: #22252C;
+    border-color: #3F3250;
+    color: #9d9d9d;
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     font-size: 15px;
     width:100%;
     position: fixed;
     bottom:0px;
+    font-family: 'Sullivan';
+}
+
+@font-face {
+    font-family: 'BEBAS___';
+    src: url('/static/fonts/BEBAS___.ttf');
+    src: local('/static/fonts/BEBAS___.ttf');
+}
+
+@font-face {
+    font-family: 'Sullivan';
+    src: url('/static/fonts/Sullivan.ttf');
+    src: local('/static/fonts/Sullivan.ttf');
 }
