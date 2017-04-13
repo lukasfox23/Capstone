@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from basic.models import Conference,UserConference,Item,Comment
 from django.contrib.auth.decorators import login_required
 from capstone.forms import ConferenceForm,FileForm
+from django.contrib import messages
 # Create your views here.
 # Thinking this url should look something like /basic/conference/"conference name"
 def conference(request, conference_id):
@@ -16,11 +17,14 @@ def conference(request, conference_id):
         if form.is_valid():
             newFile = Item(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id),file_path = request.FILES['file_path'])
             newFile.save()
-
             return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
         if request.POST.get("attendSubmit"):
-            newConferenceAttendee = UserConference(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id), user_type = "G")
-            newConferenceAttendee.save()
+            if UserConference.checkUnique(User.objects.get(username = request.user), Conference.objects.get(conference_id = desiredConf[0].conference_id)):
+                newConferenceAttendee = UserConference(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id), user_type = "G")
+                newConferenceAttendee.save()
+                messages.add_message(request, messages.SUCCESS, "You are now attending this conference!")
+            else:
+                messages.add_message(request, messages.ERROR, "You are already attending this conference!")
             return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
     else:
         form = FileForm()
