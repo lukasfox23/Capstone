@@ -10,6 +10,7 @@ from django.contrib import messages
 def conference(request, conference_id):
     confId = conference_id
     desiredConf = Conference.objects.filter(conference_id = confId)
+    items = Item.objects.filter(conference_id = confId)
     # Use desiredConf[0] to access what should be the only conference in this variable
     # Method for uploading papers, should move to model for cleanliness
     if request.method == 'POST':
@@ -28,7 +29,7 @@ def conference(request, conference_id):
             return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
     else:
         form = FileForm()
-    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
+    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items})
 
 def createconference(request):
     if request.method == "POST":
