@@ -68,12 +68,17 @@ def gallery(request):
 @login_required(login_url='login/')
 def account(request):
     CurrentUser = request.user
-    conference_list = UserConference.objects.filter(user_id=CurrentUser.id)
+    conference_list = UserConference.objects.filter(user_id = CurrentUser.id)
+    item_list = Item.objects.filter(user_id = CurrentUser.id)
     if(conference_list):
         Conferences = Conference.objects.filter(conference_id__in=conference_list)
     else:
         Conferences = ''
-    return render(request, "conference/account.html",{'Conferences':Conferences})
+    if(item_list):
+        Items = Item.objects.filter(item_id__in = item_list)
+    else:
+        Items = ''
+    return render(request, "conference/account.html",{'Conferences':Conferences, 'Items':Items})
 
 #These last two probably don't need to be pages
 #@login_required(login_url='login/')

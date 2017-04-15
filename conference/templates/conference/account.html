@@ -33,7 +33,13 @@
               <h4>My Submissions</h4>
             </div>
             <div class="panel-body">
-              <p>poop</p>
+              {% if Items == '' %}
+                <p>You haven't submitted any items or have nothing to review!</p>
+              {% else %}
+                {% for Item in Items %}
+                <p>{{ Item.item_id }}</p>
+                {% endfor %}
+              {% endif%}
             </div>
           </div>
           <div class="panel panel-default">
@@ -41,7 +47,15 @@
               <h4>Conferences I'm Attending</h4>
             </div>
             <div class="panel-body">
-              <p>poop</p>
+              {% if Attending == '' %}
+                <div class="text-center">
+                  <p>You're not attending any conferences. Click the Attend button on their page!</p>
+                </div>
+              {% else %}
+                {% for Attend in Attending %}
+                  <p>{{ Attend.conference_name }}
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
         </div>
