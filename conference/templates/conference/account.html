@@ -23,7 +23,7 @@
                 <p>It appears you have no conferences. Go join one!</p>
               {% else %}
                 {% for Conference in Conferences %}
-                <p>{{Conference.conference_name}}</p>
+                <a href='/{{ Conference.conference_id }}/'>{{ Conference.conference_name }}</a>
                 {% endfor %}
               {% endif %}
             </div>
@@ -37,7 +37,7 @@
                 <p>You haven't submitted any items or have nothing to review!</p>
               {% else %}
                 {% for Item in Items %}
-                <p>{{ Item.item_id }}</p>
+                {{ Item.item_id }}
                 {% endfor %}
               {% endif%}
             </div>

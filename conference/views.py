@@ -102,11 +102,12 @@ def account(request):
     conference_list = UserConference.objects.filter(user_id = CurrentUser.id)
     item_list = Item.objects.filter(user_id = CurrentUser.id)
     if(conference_list):
-        Conferences = Conference.objects.filter(conference_id__in=conference_list)
+        Conferences = Conference.objects.filter(conference_id__in=conference_list.values('conference_id'))
     else:
         Conferences = ''
+
     if(item_list):
-        Items = Item.objects.filter(item_id__in = item_list)
+        Items = Item.objects.filter(item_id__in = item_list.values('item_id'))
     else:
         Items = ''
     return render(request, "conference/account.html",{'Conferences':Conferences, 'Items':Items})
