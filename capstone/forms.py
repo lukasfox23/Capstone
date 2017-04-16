@@ -24,11 +24,17 @@ class FileForm(forms.Form):
     )
 
 class ConferenceForm(forms.Form):
-    name = forms.CharField(max_length=75)
-    info = forms.CharField(widget=forms.Textarea)
-    address = forms.CharField(max_length=50)
-    city = forms.CharField(max_length=20)
-    state = forms.CharField(max_length=20)
-    start = forms.DateTimeField()
-    end = forms.DateTimeField()
-    available = forms.IntegerField()
+    name = forms.CharField(label="Event Name:", max_length=75,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'name'}))
+    info = forms.CharField(label="Event Info:",
+                           widget=forms.Textarea(attrs={'class': 'form-control', 'name': 'info'}))
+    address = forms.CharField(label="Street Address:", max_length=50,
+                              widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'address'}))
+    city = forms.CharField(label="City:", max_length=20,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'city'}))
+    state = forms.CharField(label="State:", max_length=20,
+                            widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'state'}))
+    #start = forms.DateTimeField()
+    #end = forms.DateTimeField()
+    available = forms.IntegerField(label="How many people can come?:",
+                                   widget=forms.NumberInput(attrs={'class': 'form-control', 'name': 'available'}))

@@ -9,6 +9,56 @@
       </div>
       <button type="submit" class="btn btn-default">Search</button>
     </form>
+
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confCreate">Create an Event</button>
+
+    <!-- The event creation modal -->
+    <div id="confCreate" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Setup an Event!</h4>
+          </div>
+          <div class="modal-body">
+            <form id="CreateConferenceForm" action="" role="form" method="post" enctype="">
+              {% csrf_token %}
+              <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% if form.name.errors %}
+                <small class="form-text text-muted text-danger">This field is required.</small>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.info.label_tag }}
+                {{ form.info }}
+              </div>
+              <div class="form-group">
+                {{ form.address.label_tag }}
+                {{ form.address }}
+              </div>
+              <div class="form-group">
+                {{ form.city.label_tag }}
+                {{ form.city }}
+              </div>
+              <div class="form-group">
+                {{ form.state.label_tag }}
+                {{ form.state }}
+              </div>
+              <div class="form-group">
+                {{ form.available.label_tag }}
+                {{ form.available }}
+              </div>
+              <input type="submit" class="btn btn-success" value="Create!">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
     {% csrf_token %}
     {% for conference in Conferences %}
     <li>
