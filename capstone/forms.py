@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from basic.models import Conference,UserConference,Item,Comment
 from django import forms
 from datetime import datetime
+from django.utils.translation import ugettext_lazy as _
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30,
@@ -14,7 +15,17 @@ class LoginForm(AuthenticationForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username','email','password']
+        fields = ('username','email','password')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'name': 'email', 'type': 'email'}),
+            'password': forms.TextInput(attrs={'class': 'form-control', 'name': 'password', 'type': 'password'})
+        }
+        labels = {
+            'username': _('Username:'),
+            'email': _('Email:'),
+            'password': _('Password:')
+        }
 
 # For uploading papers/covers etc
 class FileForm(forms.Form):
