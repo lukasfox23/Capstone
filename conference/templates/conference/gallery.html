@@ -2,15 +2,14 @@
 
 {% block content %}
 <div class="container">
-  <div class="col-sm-12">
+  <div class="col-md-12">
     <form class="form-inline">
       <div class="form-group">
         <input class="form-control" name="conferenceNameSearch" id="conferenceNameSearch">
       </div>
       <button type="submit" class="btn btn-default">Search</button>
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confCreate">Create an Event</button>
     </form>
-
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confCreate">Create an Event</button>
 
     <!-- The event creation modal -->
     <div id="confCreate" class="modal fade" role="dialog">
@@ -59,12 +58,24 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="row">
     {% csrf_token %}
     {% for conference in Conferences %}
-    <li>
-      <a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a>
-    </li>
-    {% endfor %}
-    </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="well text-center">
+        <p><strong><a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a></strong></p>
+          <p>{{ conference.conference_info }}</p>
+          <p>NEEDS DATE FIELD</p>
+          <button class="btn btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
+        </div>
+      </div>
+   {% endfor %}
+  </div>
 </div>
 {% endblock %}
