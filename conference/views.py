@@ -20,7 +20,6 @@ def conference(request, conference_id):
                                                       conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id),
                                                       file_path = request.FILES['file_path'])
             newFile.save()
-            return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
         if request.POST.get("attendSubmit"):
             if UserConference.checkUnique(User.objects.get(username = request.user), Conference.objects.get(conference_id = desiredConf[0].conference_id)):
                 newConferenceAttendee = UserConference(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id), user_type = "G")
@@ -28,7 +27,6 @@ def conference(request, conference_id):
                 messages.add_message(request, messages.SUCCESS, "You are now attending this conference!")
             else:
                 messages.add_message(request, messages.ERROR, "You are already attending this conference!")
-            return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
     else:
         form = FileForm()
     return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items})

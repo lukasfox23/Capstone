@@ -1,15 +1,15 @@
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal{{pdf.item_id}}">
   View PDF
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal{{pdf.item_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 75%;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title" id="myModalLabel">Conference Paper</h4>
+        <h4 class="modal-title" id="myModalLabel">{{ pdf.file_path.url }}</h4>
       </div>
       <div class="modal-body">
 
@@ -21,14 +21,13 @@
             <row>
               <div class="col-sm-8">
                 <div class="well" style="height: 750px">
-                  <iframe src="http://docs.google.com/gview?url=www.reportlab.com/docs/reportlab-userguide.pdf&embedded=true"
+                  <iframe src="{{pdf.file_path.url}}"
                   style="width:100%; height:100%;" frameborder="0"></iframe>
                 </div>
               </div>
 
               <div class="col-sm-3">
                 <div class="well" style="height: 750px">
-                  <!-- Temporary shit-->
                   <p>Scrollable well for comments/reviews</p>
                 </div>
               </div>

@@ -29,6 +29,13 @@
   <br>
   <br>
   <div class="col-sm-12">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     <row>
       <div class="col-sm-9">
         <div class="well" style="height: 600px">
@@ -64,9 +71,10 @@
                 </div>
               </div>
             </div>
-            {% for item in confItems%}
+            {% for pdf in confItems%}
             <li>
               {% include "conference/contentview.html" %}
+              <button type="button" class="btn btn-default" data-dismiss="modal">{{pdf.file_path}}</button>
               <a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a>
             </li>
             {% endfor %}
