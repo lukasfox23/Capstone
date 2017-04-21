@@ -1086,10 +1086,10 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: "BEBAS", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
   line-height: 1.42857143;
-  color: #333;
+  color: #EAEAEA;
   background-color: #fff;
 }
 input,
@@ -1175,7 +1175,10 @@ hr {
 [role="button"] {
   cursor: pointer;
 }
-h1,
+h1 {
+    font-family: "BEBAS";
+    color: #EAEAEA;
+}
 h2,
 h3,
 h4,
@@ -1268,7 +1271,7 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 80px;
 }
 h2,
 .h2 {
@@ -4282,7 +4285,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   font-size: 24px;
   line-height: 20px;
   font-family: 'BEBAS';
-  color: 'white';
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -4595,13 +4597,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  font-family: 'Sullivan';
+  font-family: 'BEBAS';
   background-color: #22252C;
   border-color: #3F3250;
   color: #FFF;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #EAEAEA;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -4609,10 +4611,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+  color: #EAEAEA;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #EAEAEA;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -4659,7 +4661,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
     background-color: #080808;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: #9d9d9d;
+    color: #EAEAEA;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -4680,13 +4682,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   }
 }
 .navbar-inverse .navbar-link {
-  color: #9d9d9d;
+  color: #EAEAEA;
 }
 .navbar-inverse .navbar-link:hover {
   color: #fff;
 }
 .navbar-inverse .btn-link {
-  color: #9d9d9d;
+  color: #EAEAEA;
 }
 .navbar-inverse .btn-link:hover,
 .navbar-inverse .btn-link:focus {
@@ -5466,6 +5468,11 @@ button.list-group-item-danger.active:focus {
 .panel-body {
   padding: 15px;
 }
+.panel-body-transparent {
+  padding: 10px;
+  background-color: transparent;
+
+}
 .panel-heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
@@ -5494,6 +5501,21 @@ button.list-group-item-danger.active:focus {
   border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+  border-top-color: 1px solid white;
+  border-bottom-color: 1px solid white;
+  border-left-color: 1px solid white;
+  border-right-color: 1px solid white;
+}
+.panel-footer-transparent {
+  padding: 1px 5px;
+  background-color: transparent;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-color: 1px solid white;
+  border-bottom-color: 1px solid white;
+  border-left-color: 1px solid white;
+  border-right-color: 1px solid white;
+
 }
 .panel > .list-group,
 .panel > .panel-collapse > .list-group {
@@ -6945,7 +6967,7 @@ ul.bxslider {
 .footer-inverse {
     background-color: #22252C;
     border-color: #3F3250;
-    color: #9d9d9d;
+    color: #EAEAEA;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -6953,17 +6975,50 @@ ul.bxslider {
     width:100%;
     position: fixed;
     bottom:0px;
-    font-family: 'Sullivan';
+    font-family: 'BEBAS';
+}
+/*Bootstrap button outline override*/
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #EAEAEA;
+}
+@font-face {
+    font-family: 'OldSansBlack';
+    src: url('../fonts/OldSansBlack.ttf');
 }
 
 @font-face {
     font-family: 'BEBAS___';
     src: url('/static/fonts/BEBAS___.ttf');
     src: local('/static/fonts/BEBAS___.ttf');
-}
-
-@font-face {
-    font-family: 'Sullivan';
-    src: url('/static/fonts/Sullivan.ttf');
-    src: local('/static/fonts/Sullivan.ttf');
 }
