@@ -1,44 +1,66 @@
-{% extends "basic/header.html" %}
-{% block content %}
-
-<div class="container">
-    <p>Hello, {{user.get_username}}</p>
-</div>
-
-<div class="container text-center">
-    <h3>Welcome to EventPal!</h3>
-    <p>We're crazy about conferences and get togethers!</p>
-    <p>We've created this site so intellectuals can easily organize themselves.</p>
-    <br>
-    <div class="row">
-        <div class="col-sm-4">
-            <p>View Conferences</p>
+{% extends "basic/header.html" %} {% load staticfiles %} {% block content %}
+<div class="jumbotron jumbotron-fluid" style="background-color: transparent">
+    <div class="container text-center">
+        <h1>EventPal.</h1>
+        <hr align="center" class="light" width="25%"> {% if user.is_authenticated %}
+        <div class="container" font-size="14px">
+            <h4>Welcome, {{user.get_username}}</h4>
         </div>
-        <div class="col-sm-4">
-            <p>Create a Conference</p>
-        </div>
-        <div class="col-sm-4">
-            <p>Submit a Paper</p>
+        {% endif %}
+        <br>
+        <div id="test" class="row">
+            <div class="col-md-4 text-center">
+                <div class="panel panel-body-transparent">
+                    <a href='/gallery/'>
+                        <img src="{% static 'images/004-loupe.svg' %}" width="50%" height="50%">
+                    </a>
+                </div>
+                <div class="panel-footer-transparent">
+
+                    <button type="button" class="btn btn-primary btn-outline btn-block btn-lg" onclick="location.href='/gallery/'">View Conferences</button>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="panel panel-body-transparent">
+                    <a href='gallery'>
+                        <img src="{% static 'images/003-networking.svg' %}" width="50%" height="50%">
+                    </a>
+                </div>
+                <div class="panel-footer-transparent">
+                    <button type="button" class="btn btn-success btn-outline btn-block btn-lg" onclick="location.href='/gallery/'">Create a Conference</button>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="panel panel-body-transparent">
+                    <a href='/gallery/'>
+                        <img src="{% static 'images/005-pen.svg' %}" width="50%" height="50%">
+                    </a>
+                </div>
+                <div class="panel-footer-transparent">
+                    <button type="button" class="btn btn-danger btn-outline btn-block btn-lg" onclick="location.href='/gallery/'">Submit Something</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Could use a separate bg color -->
-    <div class="container" style="background: #22252C; color: #9d9d9d;">
-        <h3 class="text-center">UPCOMING CONFERENCES AND CONVENTIONS</h3>
-
-        <!-- Needs a for loop added to display three upcoming conferences -->
-        <ul class="mainSlider">
-            {% csrf_token %}
-            {% for conference in Conferences %}
-            <div class="well">
-                <p><strong><a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a></strong></p>
-                <p>{{ conference.conference_info }}</p>
-                <p>NEEDS DATE FIELD</p>
-                <button class="btn btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
-            </div>
-            {% endfor %}
-    </div>
+<!-- <div class="jumbotron jumbotron-fluid">
+<div class="container" style="background: #22252C; color: #9d9d9d;">
+    <h3 class="text-center">Browse Upcoming Conferences</h3>
+    <ul class="mainSlider">
+        {% csrf_token %}
+        {% for conference in Conferences %}
+        <div class="well">
+            <p><strong><a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a></strong></p>
+            <p>{{ conference.conference_info }}</p>
+            <p>NEEDS DATE FIELD</p>
+            <button class="btn btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
+        </div>
+        {% endfor %}
 </div>
+</div>
+</div> -->
 
+<!-- Remove?
 <div class="modal fade" id="attendModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -56,5 +78,5 @@
         </div>
     </div>
 </div>
-
+-->
 {% endblock %}
