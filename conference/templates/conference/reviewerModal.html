@@ -1,0 +1,35 @@
+<!-- Button trigger modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#reviewerModal">
+  Assign Reviewer
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="reviewerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form id=AssignReviewer class="form" role="form" method="post" action="">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title" id="myModalLabel">Assign reviewer for {{desiredConf.conference_name}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                {{ rForm.username.label_tag }}
+                {{ rForm.username }}
+                {% if rForm.username.errors %}
+                <small class="form-text text-muted text-danger">This field is required.</small>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-success" value="Submit" name="reviewerSubmit">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

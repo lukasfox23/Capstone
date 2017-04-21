@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from basic.models import Conference,UserConference,Item,Comment
 from django.contrib.auth.decorators import login_required
-from capstone.forms import ConferenceForm,FileForm
+from capstone.forms import ConferenceForm, FileForm, ReviewerForm
 from django.contrib import messages
 # Create your views here.
 # Thinking this url should look something like /basic/conference/"conference name"
@@ -11,15 +11,22 @@ def conference(request, conference_id):
     confId = conference_id
     desiredConf = Conference.objects.filter(conference_id = confId)
     items = Item.objects.filter(conference_id = confId)
+    try:
+        userConfRelationship = UserConference.objects.get(user_id = User.objects.get(username = request.user), conference_id = confId)
+    except:
+        userConfRelationship = None
     # Use desiredConf[0] to access what should be the only conference in this variable
     # Method for uploading papers, should move to model for cleanliness
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
-        if form.is_valid():
-            newFile = Item(user_id = User.objects.get(username = request.user),
-                                                      conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id),
-                                                      file_path = request.FILES['file_path'])
-            newFile.save()
+        rForm = ReviewerForm(request.POST)
+        if request.POST.get("uploadSubmit"):
+            if form.is_valid():
+                newFile = Item(user_id = User.objects.get(username = request.user),
+                                                          conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id),
+                                                          file_path = request.FILES['file_path'])
+                newFile.save()
+
         if request.POST.get("attendSubmit"):
             if UserConference.checkUnique(User.objects.get(username = request.user), Conference.objects.get(conference_id = desiredConf[0].conference_id)):
                 newConferenceAttendee = UserConference(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id), user_type = "G")
@@ -27,9 +34,31 @@ def conference(request, conference_id):
                 messages.add_message(request, messages.SUCCESS, "You are now attending this conference!")
             else:
                 messages.add_message(request, messages.ERROR, "You are already attending this conference!")
+
+        if request.POST.get("reviewerSubmit"):
+            if rForm.is_valid():
+                data = rForm.cleaned_data
+                try:
+                    reviewerRelation = UserConference.objects.get(user_id = User.objects.get(username = data['username']), conference_id = confId)
+                except:
+                    reviewerRelation = None
+                if reviewerRelation != None:
+                    if reviewerRelation.user_type != 'R':
+                        reviewerRelation.user_type = 'R'
+                        reviewerRelation.save()
+                        messages.add_message(request, messages.SUCCESS, "User set as Reviewer!")
+                    elif reviewerRelation.user_id == User.objects.get(username = request.user):
+                        messages.add_message(request, messages.ERROR, "Cannot set yourself as a reviewer!")
+                    else:
+                        messages.add_message(request, messages.ERROR, "User is already a Reviewer!")
+                else:
+                    newConferenceReviewer = UserConference(user_id = User.objects.get(username = data['username']), conference_id = Conference.objects.get(conference_id = confId), user_type = "R")
+                    newConferenceReviewer.save()
+                    messages.add_message(request, messages.SUCCESS, "User set as Reviewer!")
     else:
         form = FileForm()
-    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items})
+        rForm = ReviewerForm()
+    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'rForm':rForm, 'confItems':items, 'userRelation':userConfRelationship})
 
 
 #def createconference(request):

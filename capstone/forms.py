@@ -34,6 +34,10 @@ class FileForm(forms.Form):
         help_text = 'Only pdfs accepted'
     )
 
+class ReviewerForm(forms.Form):
+    username = forms.CharField(label="Username:", max_length=75,
+                           widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+
 class ConferenceForm(forms.Form):
     name = forms.CharField(label="Event Name:", max_length=75,
                            widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'name'}))

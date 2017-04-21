@@ -61,7 +61,7 @@
                         {{ form.file_path }}
                       </p>
                       <p>
-                        <input type="submit" value="Upload">
+                        <input type="submit" value="Upload" name="uploadSubmit">
                       </p>
                     </form>
                   </div>
@@ -92,7 +92,15 @@
           <h4>Description</h4>
           <p>{{ desiredConf.conference_info }}</p>
           <p>Spots left: {{ desiredConf.available_count }}</p>
-          <button type="button" class="btn pull-right btn-success" data-toggle="modal" data-target="#attendModal">Attend</button>
+          <div class="col-sm-4">
+            <button type="button" class="btn pull-right btn-success" data-toggle="modal" data-target="#attendModal">Attend</button>
+          </div>
+          <div class="col-sm-4">
+            {% if userRelation.user_type == "A" %}
+              {% include "conference/reviewerModal.html" %}
+            {% endif %}
+          </div>
+
         </div>
 
         <div class="modal fade" id="attendModal" role="dialog">
