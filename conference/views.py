@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from basic.models import Conference,UserConference,Item,Comment
 from django.contrib.auth.decorators import login_required
-from capstone.forms import ConferenceForm,FileForm
+from capstone.forms import ConferenceForm,FileForm,EditConferenceForm
 from django.contrib import messages
 # Create your views here.
 # Thinking this url should look something like /basic/conference/"conference name"
@@ -15,12 +15,18 @@ def conference(request, conference_id):
     # Method for uploading papers, should move to model for cleanliness
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
+        editForm = EditConferenceForm()
+        # Edit the event and render the page again
+        if request.POST.get("editSubmit"):
+            editEvent(request, desiredConf, items, form)
+
+        # Add a new file to the event
         if form.is_valid():
             newFile = Item(user_id = User.objects.get(username = request.user),
                                                       conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id),
                                                       file_path = request.FILES['file_path'])
             newFile.save()
-            return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
+            return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items, 'editForm':editForm})
         if request.POST.get("attendSubmit"):
             if UserConference.checkUnique(User.objects.get(username = request.user), Conference.objects.get(conference_id = desiredConf[0].conference_id)):
                 newConferenceAttendee = UserConference(user_id = User.objects.get(username = request.user), conference_id = Conference.objects.get(conference_id = desiredConf[0].conference_id), user_type = "G")
@@ -31,7 +37,29 @@ def conference(request, conference_id):
             return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form})
     else:
         form = FileForm()
-    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items})
+        editForm = EditConferenceForm()
+    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items, 'editForm':editForm})
+
+# Method for editing events
+def editEvent(request, desiredConf, items, form):
+    editForm = EditConferenceForm(request.POST)
+
+    if editForm.is_valid():
+        editData = editForm.cleaned_data
+
+        if editData['conference_info'] is not None:
+            Conference.objects.filter(conference_id = desiredConf[0].conference_id).update(conference_info = editData['conference_info'])
+
+        if editData['conference_address'] is not None:
+            Conference.objects.filter(conference_id = desiredConf[0].conference_id).update(conference_address = editData['conference_address'])
+
+        if editData['conference_city'] is not None:
+            Conference.objects.filter(conference_id = desiredConf[0].conference_id).update(conference_city = editData['conference_city'])
+
+        if editData['conference_state'] is not None:
+            Conference.objects.filter(conference_id = desiredConf[0].conference_id).update(conference_state = editData['conference_state'])
+
+    return render(request, "conference/conference.html", {'desiredConf':desiredConf[0], 'form':form, 'confItems':items, 'editForm':editForm})
 
 
 #def createconference(request):

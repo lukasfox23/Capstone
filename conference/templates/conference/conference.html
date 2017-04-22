@@ -6,13 +6,14 @@
     <h2>{{ desiredConf.conference_name }}</h2>
    </div>
  </div>
+
 <div class="container">
-  <div class="col-sm-12">
   <form class="form-inline">
     <div class="form-group">
       <input class="form-control" id="papersearch">
     </div>
     <div class="form-group">
+      <!-- This functionality hasn't been implemented -->
       <select class="form-control" id="paperstatus">
         <option>Status</option>
         <option>Pending</option>
@@ -22,13 +23,50 @@
       </select>
     </div>
     <button type="submit" class="btn btn-default">Search</button>
+    <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#editEvent">Edit Event</button>
   </form>
-  </div>
+</div>
 
-  <br>
-  <br>
-  <br>
-  <div class="col-sm-12">
+<!-- Modal for Editing Events, should prolly create a separate template alltogether for it -->
+<div id="editEvent" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit your event!</h4>
+      </div>
+      <div class="modal-body">
+        <form id="editEventForm" name="editEventForm" action="" role="form" method="post" enctype="">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ editForm.conference_info.label_tag }}
+            {{ editForm.conference_info }}
+          </div>
+          <div class="form-group">
+            {{ editForm.conference_address.label_tag }}
+            {{ editForm.conference_address }}
+          </div>
+          <div class="form-group">
+            {{ editForm.conference_city.label_tag }}
+            {{ editForm.conference_city}}
+          </div>
+          <div class="form-group">
+            {{ editForm.conference_state.label_tag }}
+            {{ editForm.conference_state }}
+          </div>
+          <input type="submit" name="editSubmit" class="btn btn-success" value="Confirm!">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
     <row>
       <div class="col-sm-9">
         <div class="well" style="height: 600px">
@@ -111,6 +149,5 @@
         </div>
       </div>
     </row>
-  </div>
 </div>
 {% endblock %}
