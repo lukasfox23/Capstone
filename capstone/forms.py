@@ -38,6 +38,26 @@ class ReviewerForm(forms.Form):
     username = forms.CharField(label="Username:", max_length=75,
                            widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
 
+class EditConferenceForm(ModelForm):
+    class Meta:
+        model = Conference
+        fields = ('conference_info',
+                  'conference_address',
+                  'conference_city',
+                  'conference_state')
+        widgets = {
+            'conference_info': forms.TextInput(attrs={'class': 'form-control', 'name': 'info'}),
+            'conference_address': forms.TextInput(attrs={'class': 'form-control', 'name': 'address'}),
+            'conference_city': forms.TextInput(attrs={'class': 'form-control', 'name': 'city'}),
+            'conference_state': forms.TextInput(attrs={'class': 'form-control', 'name': 'state'})
+        }
+        labels = {
+            'conference_info': _('Info:'),
+            'conference_address': _('Street Address:'),
+            'conference_city': _('City:'),
+            'conference_state': _('State:')
+        }
+
 class ConferenceForm(forms.Form):
     name = forms.CharField(label="Event Name:", max_length=75,
                            widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'name'}))
