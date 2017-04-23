@@ -40,10 +40,10 @@
                     <li>
                         <a href="/gallery/">Gallery</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li>
                         <a href="/account">Account</a>
                     </li>
-                    {% if user.is_authenticated %}
                     <li>
                         <a href="/logout">Logout</a>
                     </li>

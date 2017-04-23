@@ -43,24 +43,21 @@
         </div>
     </div>
     <!-- Could use a separate bg color -->
-<div class="jumbotron jumbotron-fluid jumbotron-fixed-bottom">
-<div class="container" style="background-color: transparent">
-    <h2 class="text-center">Upcoming Conferences</h2>
-    <hr align="center" class="light" width="25%">
-    <ul class="mainSlider">
-        {% csrf_token %}
-        {% for conference in Conferences %}
-        <div class="slider-panel">
-        <div class="panel-title">
-            <p><strong>{{ conference.conference_name }}</strong></p>
-        </div>
-        <div class="slider-panel-footer">
-            <button class="btn btn-primary btn-outline btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
-        </div>
+    <div class="container" style="background-color: transparent">
+        <h2 class="text-center">Upcoming Conferences</h2>
+        <hr align="center" class="light" width="25%">
+        <ul class="mainSlider">
+            {% csrf_token %} {% for conference in Conferences %}
+            <div class="slider-panel">
+                <div class="panel-title">
+                    <p><strong>{{ conference.conference_name }}</strong></p>
+                </div>
+                <div class="slider-panel-footer">
+                    <button class="btn btn-primary btn-outline btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
+                </div>
+            </div>
+            {% endfor %}
     </div>
-        {% endfor %}
-</div>
-</div>
 </div>
 
 <!-- Remove?
