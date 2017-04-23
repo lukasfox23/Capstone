@@ -71,5 +71,5 @@ class ConferenceForm(forms.Form):
                             widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'state'}))
     #start = forms.DateTimeField()
     #end = forms.DateTimeField()
-    available = forms.IntegerField(label="How many people can come?:",
+    available = forms.IntegerField(label="Capacity:",
                                    widget=forms.NumberInput(attrs={'class': 'form-control', 'name': 'available'}))

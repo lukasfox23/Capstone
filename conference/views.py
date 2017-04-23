@@ -5,6 +5,7 @@ from basic.models import Conference,UserConference,Item,Comment
 from django.contrib.auth.decorators import login_required
 from capstone.forms import ConferenceForm,FileForm,EditConferenceForm, ReviewerForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 # Create your views here.
 # Thinking this url should look something like /basic/conference/"conference name"
 def conference(request, conference_id):
@@ -115,6 +116,9 @@ def gallery(request):
     currentUser = request.user
     Conferences = Conference.objects.all()
     form = ConferenceForm()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(Conferences, 6)
+
 
     # The user attempts to create an event
     if request.method == "POST":
@@ -147,7 +151,8 @@ def gallery(request):
             Conferences = Conference.objects.filter(conference_name__contains = search)
             form = ConferenceForm()
         else:
-            Conferences = Conference.objects.all()
+            # Conferences = Conference.objects.all()
+            Conferences = paginator.page(page)
             form = ConferenceForm()
         return render(request, "conference/gallery.html", {'Conferences':Conferences, 'form':form})
 

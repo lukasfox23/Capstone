@@ -1,9 +1,9 @@
 {% extends "basic/header.html" %} {% load staticfiles %} {% block content %}
 <div class="jumbotron jumbotron-fluid" style="background-color: transparent">
-    <div class="container text-center">
+    <div class="container-custom  container text-center">
         <h1>EventPal.</h1>
         <hr align="center" class="light" width="25%"> {% if user.is_authenticated %}
-        <div class="container" font-size="14px">
+        <div class="container-custom" font-size="14px">
             <h4>Welcome, {{user.get_username}}</h4>
         </div>
         {% endif %}
@@ -43,13 +43,13 @@
         </div>
     </div>
     <!-- Could use a separate bg color -->
-    <div class="container" style="background-color: transparent">
+    <div class="container-custom container" style="background-color: transparent">
         <h2 class="text-center">Upcoming Conferences</h2>
         <hr align="center" class="light" width="25%">
         <ul class="mainSlider">
             {% csrf_token %} {% for conference in Conferences %}
             <div class="slider-panel">
-                <div class="panel-title">
+                <div class="panel-title" style="text-align: center">
                     <p><strong>{{ conference.conference_name }}</strong></p>
                 </div>
                 <div class="slider-panel-footer">
