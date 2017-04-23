@@ -12,7 +12,7 @@
             <div class="col-md-4 text-center">
                 <div class="panel panel-body-transparent">
                     <a href='/gallery/'>
-                        <img src="{% static 'images/004-loupe.svg' %}" width="50%" height="50%">
+                        <img src="{% static 'images/006-agenda.svg' %}" width="50%" height="50%">
                     </a>
                 </div>
                 <div class="panel-footer-transparent">
@@ -33,7 +33,7 @@
             <div class="col-md-4 text-center">
                 <div class="panel panel-body-transparent">
                     <a href='/gallery/'>
-                        <img src="{% static 'images/005-pen.svg' %}" width="50%" height="50%">
+                        <img src="{% static 'images/009-contract.svg' %}" width="50%" height="50%">
                     </a>
                 </div>
                 <div class="panel-footer-transparent">
@@ -43,22 +43,25 @@
         </div>
     </div>
     <!-- Could use a separate bg color -->
-<!-- <div class="jumbotron jumbotron-fluid">
-<div class="container" style="background: #22252C; color: #9d9d9d;">
-    <h3 class="text-center">Browse Upcoming Conferences</h3>
+<div class="jumbotron jumbotron-fluid jumbotron-fixed-bottom">
+<div class="container" style="background-color: transparent">
+    <h2 class="text-center">Upcoming Conferences</h2>
+    <hr align="center" class="light" width="25%">
     <ul class="mainSlider">
         {% csrf_token %}
         {% for conference in Conferences %}
-        <div class="well">
-            <p><strong><a href='/{{ conference.conference_id }}/'>{{ conference.conference_name }}</a></strong></p>
-            <p>{{ conference.conference_info }}</p>
-            <p>NEEDS DATE FIELD</p>
-            <button class="btn btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
+        <div class="slider-panel">
+        <div class="panel-title">
+            <p><strong>{{ conference.conference_name }}</strong></p>
         </div>
+        <div class="slider-panel-footer">
+            <button class="btn btn-primary btn-outline btn-block" onclick="location.href='/{{ conference.conference_id }}/'">View</button>
+        </div>
+    </div>
         {% endfor %}
 </div>
 </div>
-</div> -->
+</div>
 
 <!-- Remove?
 <div class="modal fade" id="attendModal" role="dialog">
