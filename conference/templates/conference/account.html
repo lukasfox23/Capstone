@@ -1,70 +1,85 @@
-{% extends "basic/header.html" %}
+{% extends "basic/header.html" %} {% block content %}
+<div class="container-custom container">
+    <!-- Event Panels -->
+    <div class="panel-group">
 
-{% block content %}
-<div class="container">
-  <!-- Account Info Panel -->
-      <div class="col-md-4">
+        <!-- Events You Own or Are Attending -->
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4>Account Details</h4>
-          </div>
-          <div class="panel-body">
-            <h4>{{ user.get_username }}</h4>
-          </div>
-        </div>
-      </div>
-  <!-- Event Panels -->
-      <div class="col-md-8">
-        <div class="panel-group">
-
-          <!-- Events You Own or Are Attending -->
-          <div class="panel panel-default">
             <div class="panel-heading">
-              <h4>My Events</h4>
+                <h4>My Events</h4>
             </div>
             <div class="panel-body">
-              {% if Conferences == '' %}
+                {% if Conferences == '' %}
                 <p>It appears you have no conferences. Go join one!</p>
-              {% else %}
-                {% for Conference in Conferences %}
-                  <div class="col-md-3">
-                    <div class="well well-sm text-center">
-                      <p><strong>{{ Conference.conference_name }}</strong></p>
-                      <button class="btn btn-default" onclick="location.href='/{{ Conference.conference_id }}/'">View</button>
+                {% else %} {% for Conference in Conferences %}
+                <div class="col-md-3">
+                    <div class="slider-panel">
+                        <div class="panel-title">
+                            <div class="text-center">
+                                <p><strong>{{ Conference.conference_name }}</strong></p>
+                            </div>
+                        </div>
+                        <div class="slider-panel-footer">
+                            <div class="text-center">
+                                <button class="btn btn-outline btn-primary" onclick="location.href='/{{ Conference.conference_id }}/'">View</button>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                {% endfor %}
-              {% endif %}
+                </div>
+                {% endfor %} {% endif %}
             </div>
-          </div>
-
-          <!-- Papers you've submitted -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>My Submissions</h4>
-            </div>
-            <div class="panel-body">
-              {% if Items == '' %}
-                <p>You haven't submitted any items or have nothing to review!</p>
-              {% else %}
-                {% for Item in Items %}
-                {{ Item.item_id }}
-                {% endfor %}
-              {% endif%}
-            </div>
-          </div>
-
-          <!-- Invitations -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>Invitations</h4>
-            </div>
-            <div class="panel-body">
-              <p>You'll see invitations here!</p>
-            </div>
-          </div>
         </div>
-      </div>
+
+        <!-- Papers you've submitted -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>My Submissions</h4>
+            </div>
+            <div class="panel-body">
+                {% if Items == '' %}
+                <p>You haven't submitted any items or have nothing to review!</p>
+                {% else %} {% for Item in Items %}
+                <div class="col-md-3">
+                    <div class="slider-panel">
+                        <div class="panel-title" style="text-align: center; overflow: hidden;">
+                            <p><strong>{{ Item.file_path }}</strong></p>
+                        </div>
+                        {% if Item.approval_flag %}
+                        <div class="text-success slider-panel-footer">
+                            <div class="text-center">
+                                APPROVED
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="text-warning slider-panel-footer">
+                            <div class="text-center">
+                                PENDING
+                            </div>
+                        </div>
+                        {% endif %}
+                    <div class="panel-footer" style="background-color: #d8dde0">
+
+                        <button class="btn btn-sm btn-primary btn-outline btn-block">View Comments</button>
+                        <button class="btn btn-sm btn-danger btn-outline btn-block">Remove</button>
+
+                    </div>
+                    </div>
+                </div>
+                {% endfor %} {% endif%}
+            </div>
+        </div>
+
+        <!-- Invitations -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Invitations</h4>
+            </div>
+            <div class="panel-body">
+                <p>You'll see invitations here!</p>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 {% endblock %}

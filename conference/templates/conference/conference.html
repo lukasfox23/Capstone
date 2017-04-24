@@ -1,33 +1,37 @@
-{% extends "basic/header.html" %}
-
-{% block content %}
-<div class="container">
-  <h2>{{ desiredConf.conference_name }}</h2>
-</div>
-
-<div class="container">
-  <form class="form-inline">
-    <div class="form-group">
-      <input class="form-control" id="papersearch">
+{% extends "basic/header.html" %} {% block content %}
+<div class="jumbotron" style="background-color: transparent; padding-top: 0px">
+    <!-- I want this in the bottom left of jumbotron eventually -->
+    <div class="text-center">
+        <h1>{{ desiredConf.conference_name }}</h1>
+        <hr align="center" class="light" width="25%">
+        <br>
     </div>
-    <div class="form-group">
-      <!-- This functionality hasn't been implemented -->
-      <select class="form-control" id="paperstatus">
+
+    <div class="container-custom container">
+        <form class="form-inline">
+            <div class="form-group">
+                <input class="form-control" id="papersearch">
+            </div>
+            <div class="form-group">
+                <!-- This functionality hasn't been implemented -->
+                <select class="form-control" id="paperstatus">
         <option>Status</option>
         <option>Pending</option>
         <option>In Review</option>
         <option>Approved</option>
         <option>Denied</option>
       </select>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+            <div class="pull-right">
+            {% if userRelation.user_type == "A" %}
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#editEvent">Edit Event</button>
+            {% endif %}
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#contentSubmission">Submit a Paper</button>
+        </div>
+        </form>
     </div>
-    <button type="submit" class="btn btn-default">Search</button>
-    <div class="pull-right">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#contentSubmission">Submit a Paper</button>
-      {% if userRelation.user_type == "A" %}
-      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#editEvent">Edit Event</button>
-      {% endif %}
-    </div>
-  </form>
+
   {% if messages %}
   <ul class="messages">
     {% for message in messages %}
@@ -35,44 +39,40 @@
     {% endfor %}
   </ul>
   {% endif %}
-</div>
 
-<!-- Modal for Editing Events, should prolly create a separate template alltogether for it -->
-<div id="editEvent" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit your event!</h4>
-      </div>
-      <div class="modal-body">
-        <form id="editEventForm" name="editEventForm" action="" role="form" method="post" enctype="">
-          {% csrf_token %}
-          <div class="form-group">
-            {{ editForm.conference_info.label_tag }}
-            {{ editForm.conference_info }}
-          </div>
-          <div class="form-group">
-            {{ editForm.conference_address.label_tag }}
-            {{ editForm.conference_address }}
-          </div>
-          <div class="form-group">
-            {{ editForm.conference_city.label_tag }}
-            {{ editForm.conference_city}}
-          </div>
-          <div class="form-group">
-            {{ editForm.conference_state.label_tag }}
-            {{ editForm.conference_state }}
-          </div>
-          <input type="submit" name="editSubmit" class="btn btn-success" value="Confirm!">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-      </div>
+
+    <!-- Modal for Editing Events, should prolly create a separate template alltogether for it -->
+    <div id="editEvent" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit your event!</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="editEventForm" name="editEventForm" action="" role="form" method="post" enctype="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ editForm.conference_info.label_tag }} {{ editForm.conference_info }}
+                        </div>
+                        <div class="form-group">
+                            {{ editForm.conference_address.label_tag }} {{ editForm.conference_address }}
+                        </div>
+                        <div class="form-group">
+                            {{ editForm.conference_city.label_tag }} {{ editForm.conference_city}}
+                        </div>
+                        <div class="form-group">
+                            {{ editForm.conference_state.label_tag }} {{ editForm.conference_state }}
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" name="editSubmit" class="btn btn-success" value="Confirm">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 <!-- Modal for paper submissions -->
 
@@ -104,64 +104,80 @@
   </div>
 </div>
 
-<br>
 
-<div class="container">
-    <row>
-      <div class="col-md-9">
-        <div class="well" style="height: 600px">
-          <div class="col-sm-3">
-            {% for pdf in confItems%}
-              {% include "conference/contentview.html" %}
-              <br>
-              <br>
-            {% endfor %}
-          </div>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel-group">
+                <div class="panel-title panel" style="background-color: #d8dde0">
+                    <h2>Accepted Papers & Expected Exhibits</h2>
+                </div>
+                <div class="panel-body" style="pull-left; padding-left: 0px; padding-right: 0px">
+                    <div class="card">
+                    {% for pdf in confItems%}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    {{pdf.file_path.name}}
+                                    <div class="pull-right" style="margin-right: 10px">{% include "conference/contentview.html" %}</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="panel-group">
+                <div class="panel-title panel" style="background-color: #d8dde0">
+                    <h3>{{ desiredConf.conference_name }}</h3>
+                </div>
+                <div class="panel-body panel" style="background-color: #d8dde0">
+                    <h4>Organization Name</h4>
+                    <h4>01/01/2017 00:00:00 AM</h4>
+                    <h4>{{ desiredConf.conference_city }}, {{ desiredConf.conference_state }}</h4>
+                    <h3>Description</h3>
+                    <h4>{{ desiredConf.conference_info }}</h4>
+                </div>
+                <div class="panel-footer text-right" style="background-color: #d8dde0; margin-top: 5px">
+                    <row>
+                        Spots left: {{ desiredConf.available_count }}
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#attendModal">Attend</button> {% if userRelation.user_type == "A" %} {% include "conference/reviewerModal.html" %} {% endif %}
+                    </row>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well" style="height: 600px">
-          <!-- Temporary shit-->
-          <h3>{{ desiredConf.conference_name }}</h3>
-          <br>
-          <p>Organization Name</p>
-          <p>01/01/2017 00:00:00 AM</p>
-          <p>{{ desiredConf.conference_city }}, {{ desiredConf.conference_state }}</p>
-          <br>
-          <h4>Description</h4>
-          <p>{{ desiredConf.conference_info }}</p>
-          <p>Spots left: {{ desiredConf.available_count }}</p>
-          <button type="button" class="btn pull-right btn-success" data-toggle="modal" data-target="#attendModal">Attend</button>
-          <div class="col-sm-4">
-            {% if userRelation.user_type == "A" %}
-              {% include "conference/reviewerModal.html" %}
-            {% endif %}
-          </div>
-
         </div>
+    </div>
 
-        <div class="modal fade" id="attendModal" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
+
+
+
+<div class="modal fade" id="attendModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4>Attend Confirmation</h4>
-              </div>
-              <div class="modal-body">
-                <p><strong>Are you sure you want to attend this conference?</strong></p>
-              </div>
-              <div class="modal-footer">
-                <form class="form-inline"action="" method="post">
-                  {% csrf_token %}
-                    <input type="submit" name="attendSubmit" class="btn btn-success btn-lg" value="Yes">
-                  <button type="submit" class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
-                </form>
-              </div>
             </div>
-          </div>
+            <div class="modal-body">
+                <p><strong>Are you sure you want to attend this conference?</strong></p>
+            </div>
+            <div class="modal-footer">
+                <form class="form-inline" action="" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="attendSubmit" class="btn btn-success btn-lg" value="Yes">
+                    <button type="submit" class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                </form>
+            </div>
         </div>
-      </div>
-    </row>
+    </div>
 </div>
+</div>
+
 {% endblock %}
