@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal{{pdf.item_id}}">
-  View PDF
+<button class="btn btn-outline btn-primary" data-toggle="modal" data-target="#myModal{{pdf.item_id}}">
+  View
 </button>
 
 <!-- Modal -->
@@ -9,15 +9,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="row">
         <h4 class="modal-title" id="myModalLabel">{{ pdf.file_path.name }}</h4>
+        </div>
       </div>
       <div class="modal-body">
-
+          <div class="container">
         <div style="text-align: center;">
-          <br>
-          <br>
-          <br>
-          <div class="col-sm-20">
+
             <row>
               <div class="col-sm-8">
                 <div class="well" style="height: 750px">
@@ -26,19 +25,33 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
-                <div class="well" style="height: 750px">
-                  <p>Scrollable well for comments/reviews</p>
+              <div class="col-sm-4">
+                  <div class="panel-group panel" style="background-color: #d8dde0">
+                      <div class="panel-title panel">
+                          <h3>Comment/Review Section</h3>
+                      </div>
+                <div class="panel-body panel" style="height: 700px">
+
+                    <button class="btn btn-success btn-outline btn-block" >Accept</button>
+                    <button class="btn btn-danger btn-outline btn-block">Reject</button>
+                    <br>
+                    <div class="form-group">
+                        <label for="comment">Comments:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                    </div>
                 </div>
+                <div class="panel-footer panel">
+                    <!-- Save Changes buttons does not currently do anything besides dismiss the modal!! -->
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
               </div>
-            </row>
           </div>
+            </row>
+
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+  </div>
     </div>
   </div>
 </div>
